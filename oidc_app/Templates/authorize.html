@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Authorize</title>
+</head>
+
+<body>
+    <p>Authorize</p>
+
+    <script type="text/javascript">
+    var auth_url = "https://zeekhoo.okta.com/oauth2/v1/authorize?client_id=zXkxpyie6BCcutIWnk3B&response_type=token&state=somestate&nonce=somenonce&scope=openid+profile+groups+address&redirect_uri=http%3A%2F%2Flocalhost:8000/oauth/callback";
+    window.location.href = auth_url;
+    </script>
+</body>
+</html>
