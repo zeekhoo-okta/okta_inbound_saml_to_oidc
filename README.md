@@ -2,12 +2,15 @@ Note. Runs on Python 2.7+
 
 ***Setup***
 1. Clone repository
+
 2. Create virtual environment
 
 `virtualenv venv`
+
 3. Activate virtualenv
 
 `source venv/bin/activate`
+
 4. Install requirements
 
 `pip install -r requirements.txt`
