@@ -8,22 +8,23 @@
 <body>
     <div id="token_header">
         <p>Token header</p>
-        <textarea id="header_text" readonly rows="4" cols="120">
-
-        </textarea>
+        <textarea id="header_text" readonly rows="4" cols="120"></textarea>
     </div>
     <div id="payload">
         <p>Payload</p>
-        <textarea id="payload_text" readonly rows="30" cols="120">
-
-        </textarea>
+        <textarea id="payload_text" readonly rows="30" cols="120"></textarea>
     </div>
     <div id="signature">
         <p>Signature</p>
-        <textarea id="sig_text" readonly rows="7" cols="120">
-
-        </textarea>
+        <textarea id="sig_text" readonly rows="7" cols="120"></textarea>
     </div>
+
+    <div id="errors">
+        <p>Error</p>
+        <textarea id="error" readonly rows="1" cols="120"></textarea>
+        <textarea id="error_description" readonly rows="5" cols="120"></textarea>
+    </div>
+
 
     <script type="text/javascript">
     var urlParams;
@@ -36,26 +37,37 @@
 
         urlParams = {};
         while (match = search.exec(query)) {
+            console.log(match);
             urlParams[decode(match[1])] = decode(match[2]);
         }
     })();
     var token = urlParams['access_token'];
-    var id_token = token.split(".");
+    if (token === undefined) {
+        token = urlParams['id_token'];
+    }
+    if (token != undefined) {
+        var id_token = token.split(".");
 
+        function prettyPrint(ugly) {
+            var obj = JSON.parse(ugly);
+            return JSON.stringify(obj, undefined, 4);
+        }
 
-    function prettyPrint(ugly) {
-        var obj = JSON.parse(ugly);
-        return JSON.stringify(obj, undefined, 4);
+        var header = id_token[0];
+        document.getElementById('header_text').innerHTML = prettyPrint(window.atob(header));
+
+        var payload = id_token[1];
+        document.getElementById('payload_text').innerHTML = prettyPrint(window.atob(payload));
+
+        var signature = id_token[2];
+        document.getElementById('sig_text').innerHTML = signature;
     }
 
-    var header = id_token[0];
-    document.getElementById('header_text').innerHTML = prettyPrint(window.atob(header));
+    var error = urlParams['error'];
+    document.getElementById('error').innerHTML = error;
 
-    var payload = id_token[1];
-    document.getElementById('payload_text').innerHTML = prettyPrint(window.atob(payload));
-
-    var signature = id_token[2];
-    document.getElementById('sig_text').innerHTML = signature;
+    var error_d = urlParams['error_description'];
+    document.getElementById('error_description').innerHTML = error_d;
 
     </script>
 </body>

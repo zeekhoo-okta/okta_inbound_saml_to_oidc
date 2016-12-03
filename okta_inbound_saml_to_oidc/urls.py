@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from oidc_app.views import home, oauth_auth, oauth_callback
+from oidc_app.views import home, oauth_auth, oauth_callback, fb_callback
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
     url(r'^oauth/authorize/$', oauth_auth, name='auth'),
     url(r'^oauth/callback/$', oauth_callback, name='callback'),
+    url(r'^fb/callback/$', fb_callback, name='fb'),
+
 ]

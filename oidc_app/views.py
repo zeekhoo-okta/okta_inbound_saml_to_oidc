@@ -15,3 +15,8 @@ def oauth_auth(request):
 def oauth_callback(request):
     print('do callback')
     return render(request, 'callback.html')
+
+
+def fb_callback(request):
+    print('fb callback')
+    return render(request, 'callback.html')
