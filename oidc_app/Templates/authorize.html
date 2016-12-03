@@ -7,9 +7,29 @@
 
 <body>
     <p>Authorize</p>
+    Environment variables:
+    <table>
+        <tr><td>client_id: </td><td id="client_id">{{ client_id }}</td></tr>
+        <tr><td>base url: </td><td id="base_url">http://{{ okta_org }}</td></tr>
+        <tr><td>redirect uri: </td><td id="redirect_uri">{{ redirect_uri }}</td></tr>
+    </table>
 
     <script type="text/javascript">
-    var auth_url = "https://zeekhoo.okta.com/oauth2/v1/authorize?client_id=zXkxpyie6BCcutIWnk3B&response_type=id_token&state=somestate&nonce=somenonce&scope=openid+profile+groups+address&redirect_uri=http%3A%2F%2Flocalhost:8000/oauth/callback";
+    var cid = document.getElementById('client_id').innerHTML;
+    var base = document.getElementById('base_url').innerHTML;
+    var redirect_uri = document.getElementById('redirect_uri').innerHTML;
+
+    <!--var redirect_uri = "http%3A%2F%2Flocalhost:8000/oauth/callback";-->
+    var redirect_uri = redirect_uri;
+
+    var auth_url = base + "/oauth2/v1/authorize"
+    + "?client_id=" + cid
+    + "&response_type=id_token"
+    + "&state=somestate"
+    + "&nonce=somenonce"
+    + "&scope=openid+profile+groups+address"
+    + "&redirect_uri=" + redirect_uri;
+
     window.location.href = auth_url;
     </script>
 </body>

@@ -4,3 +4,4 @@ venv
 db*
 *.pyc
 .DS_Store
+.env_dev

@@ -25,8 +25,11 @@ SECRET_KEY = 'q&bedor+)fdf%%)q7^u7trjuzp+p5)^e5wz5x#7n-c#5-il2@_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ad42a9b7.ngrok.io', 'localhost', 'localhost.shop.com']
+ALLOWED_HOSTS = []
 
+CLIENT_ID = os.environ.get('CLIENT_ID')
+OKTA_ORG = os.environ.get('OKTA_ORG')
+REDIRECT_URI = os.environ.get('REDIRECT_URI')
 
 # Application definition
 
