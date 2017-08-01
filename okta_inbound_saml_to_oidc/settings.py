@@ -24,7 +24,6 @@ SECRET_KEY = 'q&bedor+)fdf%%)q7^u7trjuzp+p5)^e5wz5x#7n-c#5-il2@_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 CLIENT_ID = os.environ.get('CLIENT_ID')
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
 
     'oidc_app',
 ]

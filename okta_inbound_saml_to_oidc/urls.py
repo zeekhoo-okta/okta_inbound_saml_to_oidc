@@ -14,12 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from oidc_app.views import home, oauth_auth, oauth_callback, fb_callback
+from oidc_app.views import home, oauth_auth, oauth_callback, fb_callback, saml_callback, login
 
 urlpatterns = [
     url(r'^$', home, name='home'),
+    url(r'^login/$', login, name='login'),
     url(r'^oauth/authorize/$', oauth_auth, name='auth'),
     url(r'^oauth/callback/$', oauth_callback, name='callback'),
     url(r'^fb/callback/$', fb_callback, name='fb'),
+    url(r'^saml/callback/$', saml_callback, name='saml'),
 
 ]

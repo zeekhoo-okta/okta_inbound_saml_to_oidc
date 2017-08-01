@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head_js %}
+<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.10.0/js/okta-sign-in.min.js" type="text/javascript"></script>
+<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.10.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet">
+<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/1.10.0/css/okta-theme.css" type="text/css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+	<div class="login-pg">
+		{% csrf_token %}
+		<div id="okta-login-container"></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block page_js %}
+<script type="text/javascript">
+	var baseUrl = 'https://zeekhoo.okta.com';
+
+	var oktaSignIn = new OktaSignIn({
+		baseUrl: baseUrl,
+	});
+
+	oktaSignIn.renderEl(
+	  { el: '#okta-login-container' },
+	  function (res) {
+		console.log(res);
+		console.log(res.status);
+		if (res.status === 'SUCCESS') {
+			res.session.setCookieAndRedirect(baseUrl);
+		}
+	  },
+	  function (err) {
+		console.log('Unexpected error authenticating user: %o', err);
+	  }
+	);
+</script>
+{% endblock %}
+

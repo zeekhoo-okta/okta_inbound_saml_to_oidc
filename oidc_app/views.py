@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.conf import settings
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
 def home(request):
     return render(request, 'index.html', {})
+
+
+def login(request):
+    return render(request, 'login.html')
 
 
 def oauth_auth(request):
@@ -23,11 +27,17 @@ def oauth_auth(request):
     return render(request, 'authorize.html', c)
 
 
+@csrf_exempt
 def oauth_callback(request):
-    print('do callback')
+    print('do callback request = {}'.format(request.POST))
     return render(request, 'callback.html')
 
 
 def fb_callback(request):
     print('fb callback')
     return render(request, 'callback.html')
+
+
+def saml_callback(request):
+    if request.method == 'POST':
+        print(request.body)
